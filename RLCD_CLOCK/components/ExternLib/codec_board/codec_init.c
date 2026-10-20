@@ -173,11 +173,11 @@ static int _i2s_init(uint8_t port, esp_codec_dev_type_t dev_type, codec_init_cfg
     if (input == false && output == false) {
         return 0;
     }
-    // 所有音频方向统一使用已经由小智全双工链路验证的紧凑 DMA 参数。
-    // 普通提示音只创建 TX，避免恢复出厂配网首屏占用连续内存时又申请
-    // IDF 默认的大块 DMA 缓冲。
-    chan_cfg.dma_desc_num = 3;
-    chan_cfg.dma_frame_num = 64;
+    // 小智双向会话恢复 16 kHz 下约 90 ms 的 DMA 容量以容忍调度抖动。
+    // 普通提示音仍使用紧凑 TX，保护配网首屏的连续内部内存余量。
+    const bool duplex = output && input;
+    chan_cfg.dma_desc_num = duplex ? 6 : 3;
+    chan_cfg.dma_frame_num = duplex ? 240 : 64;
 #ifdef SOC_I2S_SUPPORTS_TDM
     i2s_tdm_slot_mask_t slot_mask = I2S_TDM_SLOT0 | I2S_TDM_SLOT1 | I2S_TDM_SLOT2 | I2S_TDM_SLOT3;
     i2s_tdm_config_t tdm_cfg = {
