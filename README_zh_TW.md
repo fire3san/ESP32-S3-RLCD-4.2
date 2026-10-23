@@ -59,6 +59,8 @@ App bin供OTA或正確分割區上的應用更新，不可燒到0x0。Merged bin
 
 ## 上游來源與授權
 
+設定頁標題及網路、聲音、顯示、系統分類圖示取自 [Naive Icons](https://github.com/guokaigdg/naive-icons)，並調整為 RLCD 單色顯示。原始圖示採 MIT 授權，版權及授權條款保留於[第三方聲明](THIRD_PARTY_NOTICES.md)。
+
 小智移植自[78/xiaozhi-esp32](https://github.com/78/xiaozhi-esp32)，原始基線為[7b190b78e4f8dfef14126f6cd478c134b3cd3cd8](https://github.com/78/xiaozhi-esp32/commit/7b190b78e4f8dfef14126f6cd478c134b3cd3cd8)。上游MIT版權、授權與免責聲明保留於[第三方聲明](THIRD_PARTY_NOTICES.md)。本專案的非商業限制不取代第三方已授予的權利。
 
 請閱讀[貢獻指南](CONTRIBUTING.md)、[安全政策](SECURITY.md)及[專案授權](LICENSE)。不要公開密碼、API金鑰、Token、NVS映像或私人位址，也不要提交無關依賴和建置產物。

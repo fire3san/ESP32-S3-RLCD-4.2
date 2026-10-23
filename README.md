@@ -139,6 +139,8 @@ OTA 不能更新分区表。版本说明明确要求完整刷写时，请不要�
 
 ## 开源来源与第三方许可
 
+设置页主标题及网络、声音、显示、系统分类图标来自 [Naive Icons](https://github.com/guokaigdg/naive-icons)，已适配为 RLCD 单色显示。原图标采用 MIT License，版权与许可说明见 [第三方开源许可说明](THIRD_PARTY_NOTICES.md)。
+
 本项目的小智 AI 页面基于 [`78/xiaozhi-esp32`](https://github.com/78/xiaozhi-esp32) 移植和二次开发，当前固定参考基线为提交 [`7b190b78e4f8dfef14126f6cd478c134b3cd3cd8`](https://github.com/78/xiaozhi-esp32/commit/7b190b78e4f8dfef14126f6cd478c134b3cd3cd8)。
 
 `xiaozhi-esp32` 由 Shenzhen Xinzhi Future Technology Co., Ltd. 及项目贡献者以 MIT License 发布。版权声明、MIT 许可文本和免责声明保留在 [`THIRD_PARTY_NOTICES.md`](THIRD_PARTY_NOTICES.md) 中。本项目的非商业许可证只约束项目维护者拥有版权的原创部分，不覆盖第三方许可证已经授予的权利。

@@ -59,6 +59,8 @@ App binはアプリのみで、OTAや正しいアプリ領域への書き込み�
 
 ## 上流プロジェクトとライセンス
 
+設定画面の見出しとネットワーク・音声・表示・システムの分類アイコンには、[Naive Icons](https://github.com/guokaigdg/naive-icons) をRLCDのモノクロ表示に合わせて使用しています。元のアイコンはMITライセンスで提供されており、著作権表示とライセンス全文は[第三者ライセンス表記](THIRD_PARTY_NOTICES.md)に保持しています。
+
 AI部分は[78/xiaozhi-esp32](https://github.com/78/xiaozhi-esp32)を移植し、元の基準コミットは[7b190b78e4f8dfef14126f6cd478c134b3cd3cd8](https://github.com/78/xiaozhi-esp32/commit/7b190b78e4f8dfef14126f6cd478c134b3cd3cd8)です。上流のMIT著作権表示・許諾・免責事項は[第三者ライセンス表記](THIRD_PARTY_NOTICES.md)に保持しています。本プロジェクトの非商用制限は第三者から与えられた権利を変更しません。
 
 [貢献ガイド](CONTRIBUTING.md)、[セキュリティポリシー](SECURITY.md)、[ライセンス](LICENSE)を確認してください。パスワード、APIキー、Token、NVSイメージ、私用アドレスは公開せず、不要な依存関係やビルド成果物も提出しないでください。

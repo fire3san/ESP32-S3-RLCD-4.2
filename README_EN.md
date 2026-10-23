@@ -139,6 +139,8 @@ OTA cannot update the partition table. When release notes require a full flash, 
 
 ## Open-source Origin and Third-Party Licenses
 
+Icons in the Settings heading and the Network, Sound, Display, and System categories are adapted from [Naive Icons](https://github.com/guokaigdg/naive-icons) for the monochrome RLCD. The original icons are MIT-licensed; copyright and license terms are retained in [Third-Party Notices](THIRD_PARTY_NOTICES.md).
+
 The Xiaozhi AI page is ported and adapted from [`78/xiaozhi-esp32`](https://github.com/78/xiaozhi-esp32), using commit [`7b190b78e4f8dfef14126f6cd478c134b3cd3cd8`](https://github.com/78/xiaozhi-esp32/commit/7b190b78e4f8dfef14126f6cd478c134b3cd3cd8) as the fixed reference baseline.
 
 `xiaozhi-esp32` is published by Shenzhen Xinzhi Future Technology Co., Ltd. and project contributors under the MIT License. Its copyright notice, complete MIT terms, and disclaimer are preserved in [`THIRD_PARTY_NOTICES.md`](THIRD_PARTY_NOTICES.md). The project's non-commercial license applies only to original work owned by this project's maintainer and does not override rights granted by third-party licenses.

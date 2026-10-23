@@ -232,7 +232,10 @@ lv_obj_t *build_settings_menu_label(lv_obj_t *screen,
     }
     lv_label_set_long_mode(label, LV_LABEL_LONG_CLIP);
     center_align_label(label);
-    if(column==kSettingsMenuPrimaryColumn) settings_attach_category_marker(label);
+    if (column == kSettingsMenuPrimaryColumn) {
+        settings_attach_category_marker(label);
+        settings_attach_primary_icon(label, index);
+    }
     return label;
 }
 
@@ -277,13 +280,14 @@ void build_settings_page()
     set_auxiliary_page_root(AuxiliaryPage::kSettings, screen);
     lv_obj_add_flag(screen, LV_OBJ_FLAG_HIDDEN);
 
-    make_centered_label(screen,
+    lv_obj_t *title = make_centered_label(screen,
                         24,
                         18,
                         352,
                         28,
                         "设置",
                         "settings title create failed");
+    settings_attach_title_icon(title);
     make_black_bar(screen, 24, 52, 352, 3);
 
     make_black_bar(screen, 136, 62, 2, 174);

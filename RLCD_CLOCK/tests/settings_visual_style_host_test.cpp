@@ -26,16 +26,30 @@ int main() {
     lv_obj_t *label=lv_label_create(lv_scr_act());
     lv_obj_set_pos(label,150,66); lv_obj_set_size(label,111,30);
     lv_label_set_text(label,"settings");
+    lv_obj_set_style_text_align(label, LV_TEXT_ALIGN_CENTER, LV_PART_MAIN);
     settings_attach_category_marker(label);
+    const uint32_t children = lv_obj_get_child_cnt(lv_scr_act());
+    settings_attach_primary_icon(nullptr, 0);
+    settings_attach_primary_icon(label, -1);
+    settings_attach_primary_icon(label, 4);
+    settings_attach_title_icon(nullptr);
+    settings_attach_primary_icon(label, 0);
+    assert(lv_obj_get_child_cnt(lv_scr_act()) == children);
+    for (const auto &icon : settings_icon_style::kPrimaryIcons) {
+        assert(icon.header.cf == LV_IMG_CF_ALPHA_1BIT);
+        assert(icon.header.w == 20 && icon.header.h == 20);
+        assert(icon.data_size == 60 && icon.data != nullptr);
+    }
     const lv_font_t *font=lv_obj_get_style_text_font(label,0);
     for(int i=0;i<100;++i) {
         settings_visual_style(label,true,true);
         assert(lv_obj_get_style_border_width(label,0)==1);
         assert(lv_obj_get_style_line_width(label,0)==3);
-        assert(lv_obj_get_style_pad_left(label,0)==14);
+        assert(lv_obj_get_style_pad_left(label,0)==40);
         assert(lv_obj_get_style_pad_right(label,0)==10);
+        assert(lv_obj_get_style_text_align(label,0)==LV_TEXT_ALIGN_CENTER);
         settings_visual_style(label,false,true);
-        assert(lv_obj_get_style_pad_left(label,0)==10);
+        assert(lv_obj_get_style_pad_left(label,0)==36);
         assert(lv_obj_get_style_line_width(label,0)==0);
         assert(lv_obj_get_style_text_color(label,0).full==lv_color_black().full);
         settings_visual_style(label,true,false);
@@ -50,5 +64,7 @@ int main() {
         assert(lv_obj_get_x(label)==150 && lv_obj_get_y(label)==66);
         assert(lv_obj_get_width(label)==111 && lv_obj_get_height(label)==30);
     }
+    lv_refr_now(nullptr);
+    assert(lv_obj_get_child_cnt(lv_scr_act()) == children);
     assert(lv_mem_test()==LV_RES_OK);
 }

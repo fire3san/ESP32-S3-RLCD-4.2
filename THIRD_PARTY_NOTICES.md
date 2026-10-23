@@ -39,6 +39,40 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 ```
 
+## Naive Icons
+
+- 上游项目 / Upstream: [guokaigdg/naive-icons](https://github.com/guokaigdg/naive-icons)
+- 固定来源 / Source revision: [a8619441efc40609e72c00e860f4f98afc654a2b](https://github.com/guokaigdg/naive-icons/commit/a8619441efc40609e72c00e860f4f98afc654a2b)
+- 许可证 / License: MIT License
+
+设置页使用五枚图标，已离线适配为20像素单色位图；原始SVG与许可文件保留在 `RLCD_CLOCK/main/assets/naive_icons/`，不引入React或运行时SVG解析。
+
+Five icons are adapted offline as 20-pixel monochrome bitmaps for Settings. Original SVGs and the license remain in `RLCD_CLOCK/main/assets/naive_icons/`; no React or runtime SVG dependency is added.
+
+```text
+MIT License
+
+Copyright (c) 2026 Naive Icons
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+```
+
 仓库内其他第三方组件的许可证文件随对应源码目录一并保留。
 
 License files for other third-party components remain with their corresponding source directories.

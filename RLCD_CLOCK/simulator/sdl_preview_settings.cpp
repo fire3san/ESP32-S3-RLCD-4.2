@@ -31,7 +31,8 @@ lv_obj_t *make_settings_item(lv_obj_t *screen,
                              int w,
                              int h,
                              const char *text,
-                             bool selected)
+                             bool selected,
+                             int primary_index = -1)
 {
     lv_obj_t *label = make_label(screen, x, y, w, h, text);
     if (!label) {
@@ -39,8 +40,11 @@ lv_obj_t *make_settings_item(lv_obj_t *screen,
     }
     lv_label_set_long_mode(label, LV_LABEL_LONG_CLIP);
     lv_obj_set_style_text_align(label, LV_TEXT_ALIGN_CENTER, LV_PART_MAIN);
-    style_settings_item(label, selected, x==settings_layout::kSettingsPrimaryX);
-    if(x==settings_layout::kSettingsPrimaryX) settings_attach_category_marker(label);
+    style_settings_item(label, selected, primary_index >= 0);
+    if (primary_index >= 0) {
+        settings_attach_category_marker(label);
+        settings_attach_primary_icon(label, primary_index);
+    }
     return label;
 }
 
@@ -124,6 +128,7 @@ void build_settings_preview_page(const char *mode)
 
     lv_obj_t *title = make_label(screen, 24, 18, 352, 28, "设置");
     lv_obj_set_style_text_align(title, LV_TEXT_ALIGN_CENTER, LV_PART_MAIN);
+    settings_attach_title_icon(title);
     make_black_bar(screen, 24, 52, 352, 3);
     make_black_bar(screen, 136, 62, 2, 174);
 
@@ -146,7 +151,8 @@ void build_settings_preview_page(const char *mode)
                            settings_layout::kSettingsPrimaryW,
                            settings_layout::kSettingsSecondaryH,
                            primary_items[i],
-                           i == primary);
+                           i == primary,
+                           i);
     }
 
     lv_obj_t *feedback_label = nullptr;
@@ -274,9 +280,10 @@ void build_web_settings_page(const WebDemoState &state, const char *version)
     lv_obj_clear_flag(screen,LV_OBJ_FLAG_SCROLLABLE);
     auto *title=make_label(screen,24,18,352,28,"设置");
     lv_obj_set_style_text_align(title,LV_TEXT_ALIGN_CENTER,0);
+    settings_attach_title_icon(title);
     make_black_bar(screen,24,52,352,3); make_black_bar(screen,136,62,2,174);
     const char *primary[]={"网络","声音","显示","系统"};
-    for(int i=0;i<4;++i) make_settings_item(screen,settings_layout::kSettingsPrimaryX,settings_layout::kSettingsListRowY[i],settings_layout::kSettingsPrimaryW,settings_layout::kSettingsSecondaryH,primary[i],i==state.primary);
+    for(int i=0;i<4;++i) make_settings_item(screen,settings_layout::kSettingsPrimaryX,settings_layout::kSettingsListRowY[i],settings_layout::kSettingsPrimaryW,settings_layout::kSettingsSecondaryH,primary[i],i==state.primary,i);
     const char *pages[]={"天气时钟","图片时钟","天气看板","温湿时钟","日历","温湿历史","小智AI","聚合时钟"};
     char items[8][96]{};
     int count=state.count();
