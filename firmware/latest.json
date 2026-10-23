@@ -1,7 +1,7 @@
 {
-  "version": "v1.6.18",
-  "url": "https://github.com/wickenzh/ESP32-S3-RLCD-4.2/releases/download/v1.6.18/weather_clock_v1.6.18.bin",
-  "sha256": "9ca2c5982fce0c435c0463f32ac1bf3882ea903cfc6837bc32d891bcdaa37138",
-  "size": 6317648,
-  "notes": "v1.6.18：共 1 项更新。\n1. 修复小智语音回复出现沙哑和杂音的问题，并调整专用音频DMA及尾音排空等待；普通提示音继…\n完整说明见源码仓库同版本 Release。"
+  "version": "v1.6.19",
+  "url": "https://github.com/wickenzh/ESP32-S3-RLCD-4.2/releases/download/v1.6.19/weather_clock_v1.6.19.bin",
+  "sha256": "8953eb4052c0e83cde34ce328822c8b75a0ebeba99a19b1759a879cf9f547d72",
+  "size": 6318384,
+  "notes": "v1.6.19：共 1 项更新。\n1. 为设置页主标题及网络、声音、显示、系统分类增加居中显示的单色图标，并在主页说明图标来源。\n完整说明见源码仓库同版本 Release。"
 }

@@ -1,6 +1,20 @@
 {
-  "latest": "v1.6.18",
+  "latest": "v1.6.19",
   "items": [
+    {
+      "version": "v1.6.19",
+      "notes": "v1.6.19：共 1 项更新。\n1. 为设置页主标题及网络、声音、显示、系统分类增加居中显示的单色图标，并在主页说明图标来源。\n完整说明见源码仓库同版本 Release。",
+      "app": {
+        "url": "https://github.com/wickenzh/ESP32-S3-RLCD-4.2/releases/download/v1.6.19/weather_clock_v1.6.19.bin",
+        "sha256": "8953eb4052c0e83cde34ce328822c8b75a0ebeba99a19b1759a879cf9f547d72",
+        "size": 6318384
+      },
+      "merged": {
+        "url": "https://github.com/wickenzh/ESP32-S3-RLCD-4.2/releases/download/v1.6.19/weather_clock_v1.6.19_merged.bin",
+        "sha256": "b196d8ea1a98190f6cb17efcd44b496ec98b46cba514b7783e50003ddfad4a52",
+        "size": 16509951
+      }
+    },
     {
       "version": "v1.6.18",
       "notes": "v1.6.18：共 1 项更新。\n1. 修复小智语音回复出现沙哑和杂音的问题，并调整专用音频DMA及尾音排空等待；普通提示音继…\n完整说明见源码仓库同版本 Release。",
@@ -124,20 +138,6 @@
       "merged": {
         "url": "https://github.com/wickenzh/ESP32-S3-RLCD-4.2/releases/download/v1.6.10/weather_clock_v1.6.10_merged.bin",
         "sha256": "a81e0258d4e472a4c55e167aaaca4cd391eb54e5a23926d0d6c316171eb5c784",
-        "size": 16509951
-      }
-    },
-    {
-      "version": "v1.6.9",
-      "notes": "v1.6.9：共 1 项更新。\n1. 优化天气自动定位：天气同步可复用最多 6 小时的定位结果；网络配置或手动城市变更后重新…\n完整说明见源码仓库同版本 Release。",
-      "app": {
-        "url": "https://github.com/wickenzh/ESP32-S3-RLCD-4.2/releases/download/v1.6.9/weather_clock_v1.6.9.bin",
-        "sha256": "981766b25ca914654d92c44ce216463dbf6c82ac798b25a6ed75e069314eb3f4",
-        "size": 6304432
-      },
-      "merged": {
-        "url": "https://github.com/wickenzh/ESP32-S3-RLCD-4.2/releases/download/v1.6.9/weather_clock_v1.6.9_merged.bin",
-        "sha256": "612108130a5412f88f448bf8751f4b99b6fbcec4b9df22083f8a5692e67cc4e0",
         "size": 16509951
       }
     }
