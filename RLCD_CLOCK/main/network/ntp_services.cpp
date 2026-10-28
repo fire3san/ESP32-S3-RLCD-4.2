@@ -29,9 +29,9 @@ static constexpr const char *kNtpRuntimeChangedLog =
 namespace {
 bool s_ntp_started = false;
 constexpr const char *const kNtpServers[] = {
-    "ntp.aliyun.com",
-    "ntp.tencent.com",
-    "pool.ntp.org",
+    "stdtime.gov.hk",
+    "hk.pool.ntp.org",
+    "time.google.com",
 };
 constexpr size_t kNtpServerCount = array_count(kNtpServers);
 constexpr size_t kDefaultConfiguredNtpServerSlots = kNtpServerCount;

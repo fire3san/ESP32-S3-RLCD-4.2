@@ -65,19 +65,19 @@ bool open_meteo_weather_code(int code,bool daylight,char *text,size_t text_size,
     const char *label="未知"; int mapped=999;
     switch(code){
     case 0:label="晴";mapped=daylight?100:150;break;
-    case 1:case 2:label="多云";mapped=daylight?101:151;break;
-    case 3:label="阴";mapped=104;break;
-    case 45:case 48:label="雾";mapped=501;break;
+    case 1:case 2:label="多雲";mapped=daylight?101:151;break;
+    case 3:label="陰";mapped=104;break;
+    case 45:case 48:label="霧";mapped=501;break;
     case 51:case 53:case 55:label="毛毛雨";mapped=309;break;
-    case 56:case 57:case 66:case 67:label="冻雨";mapped=313;break;
+    case 56:case 57:case 66:case 67:label="凍雨";mapped=313;break;
     case 61:case 80:label="小雨";mapped=305;break;
     case 63:case 81:label="中雨";mapped=306;break;
     case 65:case 82:label="大雨";mapped=307;break;
     case 71:case 77:case 85:label="小雪";mapped=400;break;
     case 73:label="中雪";mapped=401;break;
     case 75:case 86:label="大雪";mapped=402;break;
-    case 95:label="雷阵雨";mapped=302;break;
-    case 96:case 99:label="雷阵雨伴冰雹";mapped=304;break;
+    case 95:label="雷陣雨";mapped=302;break;
+    case 96:case 99:label="雷陣雨伴冰雹";mapped=304;break;
     default:break;
     }
     if(!text||!text_size||!icon||!icon_size)return false;
@@ -138,7 +138,7 @@ bool parse_open_meteo_weather(const char *json,WeatherData *weather,WeatherForec
     if(!open_meteo_weather_code(static_cast<int>(code),daylight!=0,weather->text,sizeof(weather->text),weather->icon,sizeof(weather->icon)))return false;
     auto &today=forecast->days[0];
     std::snprintf(today.humidity,sizeof(today.humidity),"%.0f",humidity);
-    const char *dirs[]={"北风","东北风","东风","东南风","南风","西南风","西风","西北风"};
+    const char *dirs[]={"北風","東北風","東風","東南風","南風","西南風","西風","西北風"};
     std::snprintf(today.wind_dir,sizeof(today.wind_dir),"%s",dirs[static_cast<int>((direction+22.5)/45.0)%8]);
     const double thresholds[]={0.3,1.6,3.4,5.5,8.0,10.8,13.9,17.2,20.8,24.5,28.5,32.7};
     int scale=0;while(scale<12 && wind>=thresholds[scale])++scale;
@@ -159,7 +159,7 @@ bool parse_open_meteo_air(const char *json,WeatherAirData *air)
     air->us_aqi=true;
     std::snprintf(air->aqi,sizeof(air->aqi),"%.0f",aqi);
     std::snprintf(air->pm2p5,sizeof(air->pm2p5),"%.1f",pm);
-    const char *category=aqi<=50?"优":aqi<=100?"中等":aqi<=150?"敏感":aqi<=200?"不健康":aqi<=300?"很差":"危险";
+    const char *category=aqi<=50?"優":aqi<=100?"普通":aqi<=150?"敏感":aqi<=200?"不健康":aqi<=300?"非常差":"危險";
     std::snprintf(air->category,sizeof(air->category),"%s",category);
     air->ready=true;
     return true;

@@ -10,15 +10,15 @@
 
 namespace {
 constexpr const char *kCityLookupUrlFormat =
-    "https://%s/geo/v2/city/lookup?location=%s&number=1&range=cn&lang=zh";
+    "https://%s/geo/v2/city/lookup?location=%s&number=1&lang=zh-hant";
 constexpr const char *kAlertUrlFormat =
-    "https://%s/weatheralert/v1/current/%s/%s?lang=zh&localTime=true";
+    "https://%s/weatheralert/v1/current/%s/%s?lang=zh-hant&localTime=true";
 constexpr const char *kNowUrlFormat =
-    "https://%s/v7/weather/now?location=%s&lang=zh&unit=m";
+    "https://%s/v7/weather/now?location=%s&lang=zh-hant&unit=m";
 constexpr const char *kDailyUrlFormat =
-    "https://%s/v7/weather/%dd?location=%s&lang=zh&unit=m";
+    "https://%s/v7/weather/%dd?location=%s&lang=zh-hant&unit=m";
 constexpr const char *kAirUrlFormat =
-    "https://%s/airquality/v1/current/%s/%s?lang=zh";
+    "https://%s/airquality/v1/current/%s/%s?lang=zh-hant";
 constexpr size_t kMaximumFormattedIntSize = 12;
 constexpr size_t kMaximumCoordinateTextSize = 24;
 

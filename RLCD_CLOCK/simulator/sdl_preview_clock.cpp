@@ -69,7 +69,7 @@ void SdlPreviewClock::draw_time(const struct tm &local)
     lv_canvas_fill_bg(time_canvas_, lv_color_white(), LV_OPA_COVER);
     char hm[6];
     snprintf(hm, sizeof(hm), "%02d:%02d", local.tm_hour, local.tm_min);
-    draw_dseg_text(time_canvas_, kDSEG84Font, hm, 0, 88);
+    draw_dseg_scaled_text(time_canvas_, kDSEG84Font, hm, 0, 106, 6, 5);
     lv_obj_invalidate(time_canvas_);
 }
 
@@ -79,7 +79,7 @@ void SdlPreviewClock::draw_second(const struct tm &local)
     lv_canvas_fill_bg(second_canvas_, lv_color_white(), LV_OPA_COVER);
     char ss[3];
     snprintf(ss, sizeof(ss), "%02d", local.tm_sec);
-    draw_dseg_text(second_canvas_, kDSEG36Font, ss, 0, 40);
+    draw_dseg_scaled_text(second_canvas_, kDSEG36Font, ss, 0, 30, 3, 4);
     lv_obj_invalidate(second_canvas_);
 }
 
@@ -341,41 +341,20 @@ void SdlPreviewClock::build_time_and_progress(lv_obj_t *screen)
         lv_canvas_fill_bg(second_canvas_, lv_color_white(), LV_OPA_COVER);
     }
 
-    status_gif_canvas_ = make_canvas(screen,
-                                     kClockStatusGifCanvasX,
-                                     kClockStatusGifCanvasY,
-                                     STATUS_GIF_WIDTH,
-                                     STATUS_GIF_HEIGHT,
-                                     status_gif_canvas_pixels_.data());
-    remember_lower_panel_object(status_gif_canvas_);
-    if (status_gif_canvas_) {
-        lv_canvas_fill_bg(status_gif_canvas_, lv_color_white(), LV_OPA_COVER);
-    }
-    draw_status_gif_frame(0);
+    status_gif_canvas_ = nullptr;
 
-    lv_obj_t *top_line = make_black_bar(
-        screen,
-        kClockDividerX,
-        kClockTopDividerY,
-        kClockDividerWidth,
-        kClockDividerHeight);
     lv_obj_t *bottom_line = make_black_bar(screen,
                                            kClockDividerX,
                                            kClockBottomDividerY,
                                            kClockDividerWidth,
                                            kClockDividerHeight);
-    day_progress_.build(screen, 59);
     second_progress_.build(screen, kClockSecondProgressCanvasY);
     panel_sep_a_ = make_black_bar(screen,
                                   kClockLowerPanelSeparatorAX,
                                   kClockLowerPanelSeparatorY,
                                   kClockLowerPanelSeparatorWidth,
                                   kClockLowerPanelSeparatorHeight);
-    panel_sep_b_ = make_black_bar(screen,
-                                  kClockLowerPanelSeparatorBX,
-                                  kClockLowerPanelSeparatorY,
-                                  kClockLowerPanelSeparatorWidth,
-                                  kClockLowerPanelSeparatorHeight);
+    panel_sep_b_ = nullptr;
 
     low_battery_icon_canvas_ = make_canvas(screen,
                                            kClockLowBatteryIconX,

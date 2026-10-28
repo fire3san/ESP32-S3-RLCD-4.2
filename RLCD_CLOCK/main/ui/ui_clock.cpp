@@ -452,34 +452,17 @@ void build_clock_time_canvases(lv_obj_t *screen)
                             kClockSecondCanvasWidth,
                             kClockSecondCanvasHeight,
                             kClockComponentSecond);
-    build_clock_fill_canvas(screen,
-                            &objects.status_gif_canvas,
-                            &s_status_gif_canvas_buffer,
-                            kClockStatusGifCanvasX,
-                            kClockStatusGifCanvasY,
-                            STATUS_GIF_WIDTH,
-                            STATUS_GIF_HEIGHT,
-                            kClockComponentStatusGif);
-    remember_lower_panel_object(objects.status_gif_canvas);
-    if (s_status_gif_canvas_buffer) {
-        draw_status_gif_frame(0);
-    }
+    objects.status_gif_canvas = nullptr;
 }
 
 void build_clock_dividers_and_progress(lv_obj_t *screen)
 {
     ClockSurfaceObjectRefs &objects = mutable_clock_surface_object_refs();
-    lv_obj_t *top_line = make_bar(screen,
-                                  kClockDividerX,
-                                  kClockTopDividerY,
-                                  kClockDividerWidth,
-                                  kClockDividerHeight);
     lv_obj_t *bottom_line = make_bar(screen,
                                      kClockDividerX,
                                      kClockBottomDividerY,
                                      kClockDividerWidth,
                                      kClockDividerHeight);
-    build_work_page_day_progress(screen, kWorkPageWeatherClock);
     build_progress_canvas(screen,
                           &objects.second_progress_canvas,
                           &s_second_progress_canvas_buffer,
@@ -489,15 +472,9 @@ void build_clock_dividers_and_progress(lv_obj_t *screen)
                                          kClockLowerPanelSeparatorY,
                                          kClockLowerPanelSeparatorWidth,
                                          kClockLowerPanelSeparatorHeight);
-    objects.panel_separator_b = make_bar(screen,
-                                         kClockLowerPanelSeparatorBX,
-                                         kClockLowerPanelSeparatorY,
-                                         kClockLowerPanelSeparatorWidth,
-                                         kClockLowerPanelSeparatorHeight);
-    set_obj_black(top_line, true);
+    objects.panel_separator_b = nullptr;
     set_obj_black(bottom_line, true);
     set_obj_black(objects.panel_separator_a, true);
-    set_obj_black(objects.panel_separator_b, true);
 }
 } // namespace
 

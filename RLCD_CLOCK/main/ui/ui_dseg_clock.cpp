@@ -43,7 +43,7 @@ void draw_time_canvas(const struct tm &local)
 
     char hm[kHourMinuteTextSize] = {};
     format_hour_minute_text(hm, local);
-    draw_dseg_text(canvas, kDSEG84Font, hm, 0, 88);
+    draw_dseg_scaled_text(canvas, kDSEG84Font, hm, 0, 106, 6, 5);
     lv_obj_invalidate(canvas);
 }
 
@@ -56,6 +56,6 @@ void draw_second_canvas(const struct tm &local)
     lv_canvas_fill_bg(canvas, lv_color_white(), LV_OPA_COVER);
     char ss[kSecondTextSize] = {};
     format_two_digit_second_text(ss, local.tm_sec);
-    draw_dseg_text(canvas, kDSEG36Font, ss, 0, 40);
+    draw_dseg_scaled_text(canvas, kDSEG36Font, ss, 0, 30, 3, 4);
     lv_obj_invalidate(canvas);
 }

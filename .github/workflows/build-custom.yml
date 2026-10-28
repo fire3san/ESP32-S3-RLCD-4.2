@@ -1,0 +1,49 @@
+name: Build Firmware
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    name: Build ESP32-S3 Firmware
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+
+      - name: Prepare OTA endpoint header
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 .github/scripts/prepare_ota_endpoint.py \
+            --output RLCD_CLOCK/main/core/ota_endpoint_local.h
+          test -s RLCD_CLOCK/main/core/ota_endpoint_local.h
+
+      - name: Build with ESP-IDF
+        uses: espressif/esp-idf-ci-action@v1
+        with:
+          esp_idf_version: v5.5.3
+          target: esp32s3
+          path: RLCD_CLOCK
+          command: >-
+            set -euo pipefail;
+            idf.py build;
+            cp build/weather_clock.bin "../weather_clock_app.bin";
+            cd build;
+            esptool.py --chip esp32s3 merge_bin -o "../../weather_clock_merged.bin" @flash_args
+
+      - name: Upload merged firmware artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: weather-clock-firmware
+          path: |
+            weather_clock_merged.bin
+            weather_clock_app.bin
+          if-no-files-found: error
+          retention-days: 14

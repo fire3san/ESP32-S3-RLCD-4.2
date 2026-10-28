@@ -12,3 +12,10 @@ int draw_dseg_text(lv_obj_t *canvas,
                    const char *text,
                    int cursor_x,
                    int baseline_y);
+int draw_dseg_scaled_text(lv_obj_t *canvas,
+                          const DsegFont &font,
+                          const char *text,
+                          int cursor_x,
+                          int baseline_y,
+                          int scale_num,
+                          int scale_den);
