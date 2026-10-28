@@ -113,9 +113,9 @@ static_assert(kClockLowerPanelSeparatorY +
                       kClockLowerPanelSeparatorHeight <=
                   300,
               "clock lower-panel separators must fit the display");
-static_assert(kClockWeatherTempLabelY <
-                  kClockWeatherHumiLabelY,
-              "clock weather metrics must keep temperature above humidity");
+static_assert(kClockWeatherTempLabelX <
+                  kClockWeatherHumiLabelX,
+              "clock weather metrics must keep temperature beside humidity");
 static_assert(kClockLocalTempLabelY <
                   kClockLocalHumiLabelY,
               "clock local metrics must keep temperature above humidity");
