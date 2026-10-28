@@ -21,9 +21,12 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          python3 .github/scripts/prepare_ota_endpoint.py \
-            --output RLCD_CLOCK/main/core/ota_endpoint_local.h
-          test -s RLCD_CLOCK/main/core/ota_endpoint_local.h
+          mkdir -p RLCD_CLOCK/main/core
+          cat << 'EOF' > RLCD_CLOCK/main/core/ota_endpoint_local.h
+          #pragma once
+          #define WEATHER_CLOCK_OTA_MANIFEST_URL "https://raw.githubusercontent.com/fire3san/ESP32-S3-RLCD-4.2/main/firmware/latest.json"
+          #define WEATHER_CLOCK_OTA_BACKUP_MANIFEST_URL "https://raw.githubusercontent.com/fire3san/ESP32-S3-RLCD-4.2/main/firmware/latest.json"
+          EOF
 
       - name: Build with ESP-IDF
         uses: espressif/esp-idf-ci-action@v1
