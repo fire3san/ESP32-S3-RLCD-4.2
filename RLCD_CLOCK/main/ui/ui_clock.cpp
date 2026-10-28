@@ -353,7 +353,7 @@ void build_clock_weather_panel(lv_obj_t *screen)
     }
     objects.temperature_label =
         make_clock_lower_center_label(screen,
-                                      kClockWeatherMetricLabelX,
+                                      kClockWeatherTempLabelX,
                                       kClockWeatherTempLabelY,
                                       kClockWeatherMetricLabelWidth,
                                       kClockWeatherMetricLabelHeight,
@@ -361,7 +361,7 @@ void build_clock_weather_panel(lv_obj_t *screen)
                                       kClockComponentWeatherTemp);
     objects.humidity_label =
         make_clock_lower_center_label(screen,
-                                      kClockWeatherMetricLabelX,
+                                      kClockWeatherHumiLabelX,
                                       kClockWeatherHumiLabelY,
                                       kClockWeatherMetricLabelWidth,
                                       kClockWeatherMetricLabelHeight,

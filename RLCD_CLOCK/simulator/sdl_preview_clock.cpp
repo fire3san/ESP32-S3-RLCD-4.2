@@ -69,7 +69,7 @@ void SdlPreviewClock::draw_time(const struct tm &local)
     lv_canvas_fill_bg(time_canvas_, lv_color_white(), LV_OPA_COVER);
     char hm[6];
     snprintf(hm, sizeof(hm), "%02d:%02d", local.tm_hour, local.tm_min);
-    draw_dseg_scaled_text(time_canvas_, kDSEG84Font, hm, 0, 106, 6, 5);
+    draw_dseg_scaled_text(time_canvas_, kDSEG84Font, hm, 0, 150, 7, 4);
     lv_obj_invalidate(time_canvas_);
 }
 
@@ -79,7 +79,7 @@ void SdlPreviewClock::draw_second(const struct tm &local)
     lv_canvas_fill_bg(second_canvas_, lv_color_white(), LV_OPA_COVER);
     char ss[3];
     snprintf(ss, sizeof(ss), "%02d", local.tm_sec);
-    draw_dseg_scaled_text(second_canvas_, kDSEG36Font, ss, 0, 30, 3, 4);
+    draw_dseg_scaled_text(second_canvas_, kDSEG36Font, ss, 0, 28, 3, 4);
     lv_obj_invalidate(second_canvas_);
 }
 
@@ -238,13 +238,13 @@ void SdlPreviewClock::build_weather_summary(lv_obj_t *screen)
     lv_label_set_long_mode(weather_info_label_, LV_LABEL_LONG_CLIP);
     lv_obj_set_style_text_align(weather_info_label_, LV_TEXT_ALIGN_CENTER, LV_PART_MAIN);
     weather_temp_label_ = make_label(screen,
-                                     kClockWeatherMetricLabelX,
+                                     kClockWeatherTempLabelX,
                                      kClockWeatherTempLabelY,
                                      kClockWeatherMetricLabelWidth,
                                      kClockWeatherMetricLabelHeight,
                                      "--℃");
     weather_humi_label_ = make_label(screen,
-                                     kClockWeatherMetricLabelX,
+                                     kClockWeatherHumiLabelX,
                                      kClockWeatherHumiLabelY,
                                      kClockWeatherMetricLabelWidth,
                                      kClockWeatherMetricLabelHeight,

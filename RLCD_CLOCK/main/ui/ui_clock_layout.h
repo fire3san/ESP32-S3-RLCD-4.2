@@ -5,14 +5,14 @@
 
 namespace ui_clock_layout {
 
-inline constexpr int kClockTimeCanvasX = 6;
-inline constexpr int kClockTimeCanvasY = 50;
-inline constexpr int kClockTimeCanvasWidth = 344;
-inline constexpr int kClockTimeCanvasHeight = 112;
-inline constexpr int kClockSecondCanvasX = 352;
-inline constexpr int kClockSecondCanvasY = 126;
+inline constexpr int kClockTimeCanvasX = 4;
+inline constexpr int kClockTimeCanvasY = 44;
+inline constexpr int kClockTimeCanvasWidth = 348;
+inline constexpr int kClockTimeCanvasHeight = 160;
+inline constexpr int kClockSecondCanvasX = 354;
+inline constexpr int kClockSecondCanvasY = 166;
 inline constexpr int kClockSecondCanvasWidth = 44;
-inline constexpr int kClockSecondCanvasHeight = 34;
+inline constexpr int kClockSecondCanvasHeight = 36;
 inline constexpr int kClockStatusGifCanvasX = 279;
 inline constexpr int kClockStatusGifCanvasY = 196;
 
@@ -44,50 +44,51 @@ inline constexpr int kClockDividerX =
     ui_work_page_layout::kTopSeparatorX;
 inline constexpr int kClockTopDividerY =
     ui_work_page_layout::kTopSeparatorY;
-inline constexpr int kClockBottomDividerY = 172;
+inline constexpr int kClockBottomDividerY = 210;
 inline constexpr int kClockDividerWidth =
     ui_work_page_layout::kTopSeparatorWidth;
 inline constexpr int kClockDividerHeight =
     ui_work_page_layout::kTopSeparatorHeight;
-inline constexpr int kClockSecondProgressCanvasY = 168;
-inline constexpr int kClockLowerPanelSeparatorY = 178;
+inline constexpr int kClockSecondProgressCanvasY = 206;
+inline constexpr int kClockLowerPanelSeparatorY = 216;
 inline constexpr int kClockLowerPanelSeparatorWidth = 2;
-inline constexpr int kClockLowerPanelSeparatorHeight = 118;
+inline constexpr int kClockLowerPanelSeparatorHeight = 80;
 inline constexpr int kClockLowerPanelSeparatorAX = 200;
 inline constexpr int kClockLowerPanelSeparatorBX = 200;
 
-inline constexpr int kClockWeatherCityLabelX = 14;
-inline constexpr int kClockWeatherCityLabelY = 186;
-inline constexpr int kClockWeatherCityLabelWidth = 76;
+inline constexpr int kClockWeatherCityLabelX = 10;
+inline constexpr int kClockWeatherCityLabelY = 222;
+inline constexpr int kClockWeatherCityLabelWidth = 70;
 inline constexpr int kClockWeatherCityLabelHeight = 22;
-inline constexpr int kClockWeatherIconLabelX = 104;
-inline constexpr int kClockWeatherIconLabelY = 184;
+inline constexpr int kClockWeatherIconLabelX = 84;
+inline constexpr int kClockWeatherIconLabelY = 220;
 inline constexpr int kClockWeatherIconLabelWidth = 36;
 inline constexpr int kClockWeatherIconLabelHeight = 38;
-inline constexpr int kClockWeatherInfoLabelX = 14;
-inline constexpr int kClockWeatherInfoLabelY = 212;
-inline constexpr int kClockWeatherInfoLabelWidth = 80;
+inline constexpr int kClockWeatherInfoLabelX = 122;
+inline constexpr int kClockWeatherInfoLabelY = 222;
+inline constexpr int kClockWeatherInfoLabelWidth = 72;
 inline constexpr int kClockWeatherInfoLabelHeight = 22;
-inline constexpr int kClockWeatherMetricLabelX = 20;
-inline constexpr int kClockWeatherTempLabelY = 240;
-inline constexpr int kClockWeatherHumiLabelY = 264;
-inline constexpr int kClockWeatherMetricLabelWidth = 76;
-inline constexpr int kClockWeatherMetricLabelHeight = 22;
+inline constexpr int kClockWeatherMetricLabelWidth = 84;
+inline constexpr int kClockWeatherMetricLabelHeight = 24;
+inline constexpr int kClockWeatherTempLabelX = 14;
+inline constexpr int kClockWeatherHumiLabelX = 104;
+inline constexpr int kClockWeatherTempLabelY = 262;
+inline constexpr int kClockWeatherHumiLabelY = 262;
 
-inline constexpr int kClockTempIconX = 236;
-inline constexpr int kClockTempIconY = 206;
-inline constexpr int kClockHumiIconX = 238;
-inline constexpr int kClockHumiIconY = 246;
-inline constexpr int kClockLocalMetricLabelX = 262;
-inline constexpr int kClockLocalTempLabelY = 204;
-inline constexpr int kClockLocalHumiLabelY = 244;
-inline constexpr int kClockLocalMetricLabelWidth = 76;
-inline constexpr int kClockLocalMetricLabelHeight = 28;
-inline constexpr int kClockTrendCanvasX = 346;
-inline constexpr int kClockTempTrendCanvasY = 206;
-inline constexpr int kClockHumiTrendCanvasY = 246;
-inline constexpr int kClockLowBatteryIconX = 236;
-inline constexpr int kClockLowBatteryIconY = 206;
+inline constexpr int kClockTempIconX = 216;
+inline constexpr int kClockTempIconY = 224;
+inline constexpr int kClockHumiIconX = 216;
+inline constexpr int kClockHumiIconY = 260;
+inline constexpr int kClockLocalMetricLabelX = 246;
+inline constexpr int kClockLocalTempLabelY = 222;
+inline constexpr int kClockLocalHumiLabelY = 258;
+inline constexpr int kClockLocalMetricLabelWidth = 90;
+inline constexpr int kClockLocalMetricLabelHeight = 26;
+inline constexpr int kClockTrendCanvasX = 352;
+inline constexpr int kClockTempTrendCanvasY = 224;
+inline constexpr int kClockHumiTrendCanvasY = 260;
+inline constexpr int kClockLowBatteryIconX = 216;
+inline constexpr int kClockLowBatteryIconY = 224;
 
 static_assert(kClockTimeCanvasX >= 0 && kClockTimeCanvasY >= 0 &&
                   kClockTimeCanvasWidth > 0 &&
