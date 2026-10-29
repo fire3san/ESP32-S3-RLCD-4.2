@@ -35,7 +35,7 @@ constexpr int kPageRootX = 0;
 constexpr int kPageRootY = 0;
 constexpr int kPageRootW = kDisplayWidth;
 constexpr int kPageRootH = kDisplayHeight;
-constexpr size_t kLowerPanelObjectCapacity = 13;
+constexpr size_t kLowerPanelObjectCapacity = 16;
 EXT_RAM_BSS_ATTR lv_obj_t *s_work_page_roots[kWorkPageCount];
 EXT_RAM_BSS_ATTR lv_obj_t *s_auxiliary_page_roots[kAuxPageRootCount];
 EXT_RAM_BSS_ATTR lv_obj_t *s_lower_panel_objects[kLowerPanelObjectCapacity];

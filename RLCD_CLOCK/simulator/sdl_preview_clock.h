@@ -23,7 +23,7 @@ public:
     void update_battery(int percent);
 
 private:
-    static constexpr std::size_t kLowerPanelObjectCapacity = 12;
+    static constexpr std::size_t kLowerPanelObjectCapacity = 16;
 
     void prepare_screen(lv_obj_t *screen);
     void build_status_header(lv_obj_t *screen);
