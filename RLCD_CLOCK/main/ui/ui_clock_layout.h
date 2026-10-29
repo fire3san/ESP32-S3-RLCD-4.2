@@ -52,41 +52,53 @@ inline constexpr int kClockDividerHeight =
 inline constexpr int kClockSecondProgressCanvasY = 206;
 inline constexpr int kClockLowerPanelSeparatorY = 216;
 inline constexpr int kClockLowerPanelSeparatorWidth = 2;
-inline constexpr int kClockLowerPanelSeparatorHeight = 80;
-inline constexpr int kClockLowerPanelSeparatorAX = 200;
-inline constexpr int kClockLowerPanelSeparatorBX = 200;
+inline constexpr int kClockLowerPanelSeparatorHeight = 60;
+inline constexpr int kClockLowerPanelSeparatorAX = 230;
+inline constexpr int kClockLowerPanelSeparatorBX = 230;
 
-inline constexpr int kClockWeatherCityLabelX = 10;
-inline constexpr int kClockWeatherCityLabelY = 222;
-inline constexpr int kClockWeatherCityLabelWidth = 70;
-inline constexpr int kClockWeatherCityLabelHeight = 22;
-inline constexpr int kClockWeatherIconLabelX = 84;
-inline constexpr int kClockWeatherIconLabelY = 220;
+inline constexpr int kClockWeatherCityLabelX = 44;
+inline constexpr int kClockWeatherCityLabelY = 215;
+inline constexpr int kClockWeatherCityLabelWidth = 48;
+inline constexpr int kClockWeatherCityLabelHeight = 20;
+inline constexpr int kClockAirUvLabelX = 6;
+inline constexpr int kClockAirUvLabelY = 256;
+inline constexpr int kClockAirUvLabelWidth = 218;
+inline constexpr int kClockAirUvLabelHeight = 20;
+inline constexpr int kClockWarningLabelX = 6;
+inline constexpr int kClockWarningLabelY = 279;
+inline constexpr int kClockWarningLabelWidth = 388;
+inline constexpr int kClockWarningLabelHeight = 20;
+inline constexpr int kClockIndoorTitleX = 238;
+inline constexpr int kClockIndoorTitleY = 215;
+inline constexpr int kClockIndoorTitleWidth = 156;
+inline constexpr int kClockIndoorTitleHeight = 20;
+inline constexpr int kClockWeatherIconLabelX = 6;
+inline constexpr int kClockWeatherIconLabelY = 215;
 inline constexpr int kClockWeatherIconLabelWidth = 36;
 inline constexpr int kClockWeatherIconLabelHeight = 38;
-inline constexpr int kClockWeatherInfoLabelX = 122;
-inline constexpr int kClockWeatherInfoLabelY = 222;
-inline constexpr int kClockWeatherInfoLabelWidth = 72;
-inline constexpr int kClockWeatherInfoLabelHeight = 22;
+inline constexpr int kClockWeatherInfoLabelX = 92;
+inline constexpr int kClockWeatherInfoLabelY = 215;
+inline constexpr int kClockWeatherInfoLabelWidth = 132;
+inline constexpr int kClockWeatherInfoLabelHeight = 20;
 inline constexpr int kClockWeatherMetricLabelWidth = 84;
-inline constexpr int kClockWeatherMetricLabelHeight = 24;
-inline constexpr int kClockWeatherTempLabelX = 14;
-inline constexpr int kClockWeatherHumiLabelX = 104;
-inline constexpr int kClockWeatherTempLabelY = 262;
-inline constexpr int kClockWeatherHumiLabelY = 262;
+inline constexpr int kClockWeatherMetricLabelHeight = 20;
+inline constexpr int kClockWeatherTempLabelX = 44;
+inline constexpr int kClockWeatherHumiLabelX = 116;
+inline constexpr int kClockWeatherTempLabelY = 236;
+inline constexpr int kClockWeatherHumiLabelY = 236;
 
-inline constexpr int kClockTempIconX = 216;
-inline constexpr int kClockTempIconY = 224;
-inline constexpr int kClockHumiIconX = 216;
-inline constexpr int kClockHumiIconY = 260;
-inline constexpr int kClockLocalMetricLabelX = 246;
-inline constexpr int kClockLocalTempLabelY = 222;
-inline constexpr int kClockLocalHumiLabelY = 258;
+inline constexpr int kClockTempIconX = 238;
+inline constexpr int kClockTempIconY = 237;
+inline constexpr int kClockHumiIconX = 238;
+inline constexpr int kClockHumiIconY = 258;
+inline constexpr int kClockLocalMetricLabelX = 266;
+inline constexpr int kClockLocalTempLabelY = 235;
+inline constexpr int kClockLocalHumiLabelY = 256;
 inline constexpr int kClockLocalMetricLabelWidth = 90;
-inline constexpr int kClockLocalMetricLabelHeight = 26;
-inline constexpr int kClockTrendCanvasX = 352;
-inline constexpr int kClockTempTrendCanvasY = 224;
-inline constexpr int kClockHumiTrendCanvasY = 260;
+inline constexpr int kClockLocalMetricLabelHeight = 21;
+inline constexpr int kClockTrendCanvasX = 368;
+inline constexpr int kClockTempTrendCanvasY = 237;
+inline constexpr int kClockHumiTrendCanvasY = 258;
 inline constexpr int kClockLowBatteryIconX = 216;
 inline constexpr int kClockLowBatteryIconY = 224;
 
@@ -116,8 +128,17 @@ static_assert(kClockLowerPanelSeparatorY +
 static_assert(kClockWeatherTempLabelX <
                   kClockWeatherHumiLabelX,
               "clock weather metrics must keep temperature beside humidity");
-static_assert(kClockLocalTempLabelY <
+static_assert(kClockLocalTempLabelY + kClockLocalMetricLabelHeight <=
                   kClockLocalHumiLabelY,
-              "clock local metrics must keep temperature above humidity");
+              "clock local metrics must not overlap");
+static_assert(kClockAirUvLabelY + kClockAirUvLabelHeight <= kClockWarningLabelY &&
+                  kClockLocalHumiLabelY + kClockLocalMetricLabelHeight <= kClockWarningLabelY,
+              "clock details must leave a full-width warning row");
+static_assert(kClockWarningLabelY + kClockWarningLabelHeight <= 300 &&
+                  kClockWarningLabelX + kClockWarningLabelWidth <= 400,
+              "clock warning row must fit the display");
+static_assert(kClockAirUvLabelX + kClockAirUvLabelWidth < kClockLowerPanelSeparatorAX &&
+                  kClockIndoorTitleX > kClockLowerPanelSeparatorAX,
+              "outdoor and indoor panels must remain separated");
 
 } // namespace ui_clock_layout

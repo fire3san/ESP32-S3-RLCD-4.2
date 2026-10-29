@@ -1,6 +1,8 @@
 // 串行获取Open-Meteo模型天气与空气质量，复用现有缓存和网络保护。
 #include "open_meteo_client.h"
 #include "open_meteo_parser.h"
+#include "hko_client.h"
+#include "hko_parser.h"
 #include "weather_provider.h"
 #include "weather_state_internal.h"
 #include "manual_weather_city_state.h"
@@ -110,17 +112,27 @@ OpenMeteoCityStatus open_meteo_lookup_city(const char *city,WeatherData *locatio
 
 bool open_meteo_validate_configuration()
 {
+    char city[kManualWeatherCityLen]={};
+    (void)manual_weather_city_snapshot(city,sizeof(city));
+    if(!city[0] || hko_city_matches(city))return hko_validate_configuration();
     workspace={};
-    return resolve_location(&workspace.weather) && fetch_forecast(&workspace.weather,&workspace.forecast);
+    if(!resolve_location(&workspace.weather))return false;
+    if(hko_city_matches(workspace.weather.city))return hko_validate_configuration();
+    return fetch_forecast(&workspace.weather,&workspace.forecast);
 }
 
 WeatherUpdateResult perform_open_meteo_update(WeatherUpdateScope scope)
 {
     const uint32_t generation=weather_provider_generation();
     if(!network_sync_continuation_allowed())return WeatherUpdateResult::kFailed;
+    char city[kManualWeatherCityLen]={};
+    (void)manual_weather_city_snapshot(city,sizeof(city));
+    if(!city[0] || hko_city_matches(city))return perform_hko_update(scope,generation);
     workspace={};
     if(!resolve_location(&workspace.weather) || !network_sync_continuation_allowed() ||
-       generation!=weather_provider_generation() || !fetch_forecast(&workspace.weather,&workspace.forecast))return WeatherUpdateResult::kFailed;
+       generation!=weather_provider_generation())return WeatherUpdateResult::kFailed;
+    if(hko_city_matches(workspace.weather.city))return perform_hko_update(scope,generation);
+    if(!fetch_forecast(&workspace.weather,&workspace.forecast))return WeatherUpdateResult::kFailed;
     workspace.weather.open_meteo=true;
     workspace.weather.configuration_generation=generation;
     bool air_ok=false;

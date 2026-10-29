@@ -145,8 +145,8 @@ void format_weather_board_alert_line(const WeatherAlertData &alert,
     if (!ui_text::output_buffer_available(out, out_len)) {
         return;
     }
-    if(weather_provider_load()==WeatherProvider::kOpenMeteo) {
-        strlcpy(out,"Open-Meteo / CAMS：不支持预警",out_len);
+    if(weather_provider_load()==WeatherProvider::kOpenMeteo && alert.updated_at==0) {
+        strlcpy(out,"天氣警告資料暫缺",out_len);
         return;
     }
     if (!alert.active || alert.count <= 0 || !alert.titles[0][0]) {
@@ -165,7 +165,11 @@ void format_weather_board_alert_line(const WeatherAlertData &alert,
 void format_weather_board_air_line(const WeatherAirData &air, char *out, size_t out_len)
 {
     if (!air.ready) {
-        ui_text::copy(out, out_len, weather_provider_load()==WeatherProvider::kOpenMeteo ? "US AQI --" : kWeatherBoardAirPlaceholder);
+        ui_text::copy(out, out_len, weather_provider_load()==WeatherProvider::kOpenMeteo ? "空氣品質 --" : kWeatherBoardAirPlaceholder);
+        return;
+    }
+    if(air.hk_aqhi) {
+        ui_text::format_or_fallback(out,out_len,"AQHI --","AQHI %s %s",text_or_dash(air.aqi),text_or_dash(air.category));
         return;
     }
     if(air.us_aqi) {

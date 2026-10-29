@@ -12,6 +12,9 @@ inline constexpr int kWeatherAdviceLen = 96;
 struct WeatherData {
     uint32_t configuration_generation = 0;
     bool open_meteo = false;
+    bool hko = false;
+    char uv[8] = {};  // Empty when HKO has no current UV observation (e.g. night).
+    char uv_risk[32] = {};
     char city[32] = {};
     char text[32] = {};
     char icon[8] = {};
@@ -55,6 +58,8 @@ struct WeatherForecastData {
 
 struct WeatherAirData {
     bool us_aqi = false;
+    bool hk_aqhi = false;
+    char station[64] = {};
     bool ready = false;
     char aqi[8] = {};
     char category[16] = {};

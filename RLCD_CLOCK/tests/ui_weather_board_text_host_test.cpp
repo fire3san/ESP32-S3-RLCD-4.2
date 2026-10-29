@@ -67,7 +67,16 @@ int main()
     assert(strcmp(out,"US AQI 42")==0);
     weather_provider_store(WeatherProvider::kOpenMeteo);
     format_weather_board_alert_line(alert,out,sizeof(out));
-    assert(strstr(out,"不支持预警")!=nullptr);
+    assert(strstr(out,"資料暫缺")!=nullptr);
+    alert.updated_at=123;
+    alert.active=true;alert.count=1;
+    strcpy(alert.titles[0],"酷熱天氣警告");
+    format_weather_board_alert_line(alert,out,sizeof(out));
+    assert(strstr(out,"酷熱天氣警告")!=nullptr);
+    air.hk_aqhi=true;air.us_aqi=false;
+    strcpy(air.aqi,"10+");strcpy(air.category,"嚴重");
+    format_weather_board_air_line(air,out,sizeof(out));
+    assert(strcmp(out,"AQHI 10+ 嚴重")==0);
     weather_provider_store(WeatherProvider::kQweather);
 
     WeatherData weather = {};

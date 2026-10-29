@@ -1,6 +1,10 @@
 # ESP32-S3 RLCD 4.2 天氣時鐘
 
-天氣來源可選和風或 Open-Meteo，預設仍為和風。啟用 Open-Meteo 不需和風 Key/Host，空氣品質採 US AQI，不提供天氣警報，也不會自行混用來源。公共介面僅供非商業使用；資料來自 [Open-Meteo](https://open-meteo.com/) / [CAMS](https://atmosphere.copernicus.eu/)，城市由 [GeoNames](https://www.geonames.org/) 查詢。
+天氣來源可選和風或無密鑰來源（設定值 `open_meteo`），預設仍為和風。無密鑰來源在城市為香港時使用香港天文台 HKO 及環保署 EPD：天文台溫濕度、繁體天氣描述、紫外線及天氣警告，另取所有一般監測站最高 AQHI（排除路邊監測站）；AQHI 並非 US AQI。其他城市仍使用 [Open-Meteo](https://open-meteo.com/) / [CAMS](https://atmosphere.copernicus.eu/) 的 US AQI，城市由 [GeoNames](https://www.geonames.org/) 查詢。香港不會在官方資料失敗時回退混用模型資料；同地點失敗的延伸資料保留上次成功快取及時間。公共介面請遵守各來源的使用及署名條款。
+
+香港時鐘的無密鑰來源在手動城市留白時亦預設香港，不需 IP 定位；明確設定其他國際城市仍使用 Open-Meteo，和風設定不受影響。85px 頁尾左側顯示香港天氣、室外溫濕度、一般監測站最高 AQHI 風險及 UV；右側保留室內溫濕度及趨勢，底部全寬顯示天氣警告。AQHI 排除路邊站；同值最高時採 RSS 首個一般站。UV 空白代表目前無觀測（例如夜間）。警告成功且無警告時有更新時間；失敗則保留前次警告及時間，首次失敗顯示資料暫缺。
+
+官方介面：HKO `rhrread` / `fnd` / `warnsum`（`lang=tc`）；EPD [繁體 AQHI RSS](https://www.aqhi.gov.hk/epd/ddata/html/out/aqhi_ind_rss_ChT.xml)。舊 `aqhi_rss_ChT.xml` 已回傳 HTTP 404，不可使用。香港目前範圍同步亦會抓取警告及 AQHI，完整同步另取預報。
 
 简体中文 [切換](README.md) · 繁體中文（目前） · [English](README_EN.md) · [日本語](README_JA.md)
 

@@ -9,6 +9,8 @@ struct ClockWeatherPanelObjectRefs {
     lv_obj_t *icon_label = nullptr;
     lv_obj_t *temperature_label = nullptr;
     lv_obj_t *humidity_label = nullptr;
+    lv_obj_t *air_uv_label = nullptr;
+    lv_obj_t *warning_label = nullptr;
 };
 
 ClockWeatherPanelObjectRefs &mutable_clock_weather_panel_object_refs();

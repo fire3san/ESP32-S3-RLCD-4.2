@@ -367,11 +367,26 @@ void build_clock_weather_panel(lv_obj_t *screen)
                                       kClockWeatherMetricLabelHeight,
                                       kClockWeatherHumidityPlaceholder,
                                       kClockComponentWeatherHumidity);
+    objects.air_uv_label = make_label(screen, kClockAirUvLabelX, kClockAirUvLabelY,
+                                      kClockAirUvLabelWidth, kClockAirUvLabelHeight,
+                                      "AQHI --  UV --");
+    remember_lower_panel_object(objects.air_uv_label);
+    objects.warning_label = make_label(screen, kClockWarningLabelX, kClockWarningLabelY,
+                                       kClockWarningLabelWidth, kClockWarningLabelHeight,
+                                       "天氣警告：等待數據");
+    remember_lower_panel_object(objects.warning_label);
+    if (objects.warning_label) {
+        lv_label_set_long_mode(objects.warning_label, LV_LABEL_LONG_SCROLL_CIRCULAR);
+        lv_obj_set_style_anim_speed(objects.warning_label, 20, LV_PART_MAIN);
+    }
 }
 
 void build_clock_local_sensor_panel(lv_obj_t *screen)
 {
     ClockLocalSensorObjectRefs &objects = mutable_clock_local_sensor_object_refs();
+    remember_lower_panel_object(make_label(screen, kClockIndoorTitleX, kClockIndoorTitleY,
+                                           kClockIndoorTitleWidth, kClockIndoorTitleHeight,
+                                           "室內環境"));
     build_clock_lower_icon(screen,
                            &objects.temperature_icon_canvas,
                            &s_temp_icon_canvas_buffer,

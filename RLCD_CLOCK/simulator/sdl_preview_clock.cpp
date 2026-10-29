@@ -253,10 +253,19 @@ void SdlPreviewClock::build_weather_summary(lv_obj_t *screen)
     remember_lower_panel_object(weather_humi_label_);
     lv_obj_set_style_text_align(weather_temp_label_, LV_TEXT_ALIGN_CENTER, LV_PART_MAIN);
     lv_obj_set_style_text_align(weather_humi_label_, LV_TEXT_ALIGN_CENTER, LV_PART_MAIN);
+    remember_lower_panel_object(make_label(screen, kClockAirUvLabelX, kClockAirUvLabelY,
+                                           kClockAirUvLabelWidth, kClockAirUvLabelHeight,
+                                           "AQHI 4 中  UV 3"));
+    remember_lower_panel_object(make_label(screen, kClockWarningLabelX, kClockWarningLabelY,
+                                           kClockWarningLabelWidth, kClockWarningLabelHeight,
+                                           "天氣警告：沒有生效警告（示例）"));
 }
 
 void SdlPreviewClock::build_sensor_summary(lv_obj_t *screen)
 {
+    remember_lower_panel_object(make_label(screen, kClockIndoorTitleX, kClockIndoorTitleY,
+                                           kClockIndoorTitleWidth, kClockIndoorTitleHeight,
+                                           "室內環境"));
     temp_icon_canvas_ = make_canvas(screen,
                                     kClockTempIconX,
                                     kClockTempIconY,

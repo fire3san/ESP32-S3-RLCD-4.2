@@ -14,12 +14,16 @@
 #include "qweather_timeout_ab_test.h"
 #include "ui_clock.h"
 #include "ui_clock_weather_text.h"
+#include "ui_clock_weather_panel_objects.h"
+#include "ui_hong_kong_panel_text.h"
+#include "ui_widgets.h"
 #include "ui_text_format.h"
 #include "ui_visible_cache.h"
 #include "ui_work_page_catalog.h"
 #include "weather_state.h"
 #include "weather_wifi_ab_test.h"
 
+#include <cstdio>
 #include <esp_log.h>
 #include <esp_timer.h>
 
@@ -304,7 +308,9 @@ bool update_weather_clock_network_status(EventBits_t bits)
 {
     if (bits & kWeatherReadyBit) {
         WeatherData weather = {};
-        if (!get_weather_snapshot(&weather)) {
+        WeatherAlertData alert = {};
+        WeatherAirData air = {};
+        if (!get_weather_full_snapshot(&weather, &alert, nullptr, &air)) {
             return false;
         }
         char city[kWeatherCityTextSize] = {};
@@ -317,13 +323,30 @@ bool update_weather_clock_network_status(EventBits_t bits)
                                    sizeof(weather_temp),
                                    weather_humi,
                                    sizeof(weather_humi));
-        return update_clock_weather_panel_text(city,
-                                               weather.text,
-                                               weather_temp,
-                                               weather_humi,
-                                               weather.icon);
+        bool changed = update_clock_weather_panel_text(city,
+                                                       weather.text,
+                                                       weather_temp,
+                                                       weather_humi,
+                                                       weather.icon);
+        char details[128] = {};
+        char warning[512] = {};
+        if (weather.hko) {
+            std::snprintf(details, sizeof(details), "AQHI %s %s  UV %s",
+                          air.ready && air.hk_aqhi ? air.aqi : "--",
+                          air.ready && air.hk_aqhi ? air.category : "",
+                          weather.uv[0] ? weather.uv : "--");
+            ui_hong_kong_panel::format_warning(alert, alert.updated_at != 0,
+                                               warning, sizeof(warning));
+        }
+        ClockWeatherPanelObjectRefs &objects = mutable_clock_weather_panel_object_refs();
+        changed |= set_label_text_if_changed(objects.air_uv_label, details);
+        changed |= set_label_text_if_changed(objects.warning_label, warning);
+        return changed;
     }
 
+    ClockWeatherPanelObjectRefs &objects = mutable_clock_weather_panel_object_refs();
+    bool details_changed = set_label_text_if_changed(objects.air_uv_label, "AQHI --  UV --");
+    details_changed |= set_label_text_if_changed(objects.warning_label, "天氣警告：等待數據");
     const bool offline_mode = offline_mode_enabled_load();
     if (network_weather_configuration_configured() && !offline_mode) {
         const char *weather_info_text =
@@ -333,7 +356,7 @@ bool update_weather_clock_network_status(EventBits_t bits)
                                                weather_info_text,
                                                kClockWeatherTempPlaceholder,
                                                kClockWeatherHumidityPlaceholder,
-                                               kClockWeatherUnknownIconCode);
+                                               kClockWeatherUnknownIconCode) || details_changed;
     }
 
     return update_clock_weather_panel_text(
@@ -342,5 +365,5 @@ bool update_weather_clock_network_status(EventBits_t bits)
                      : kClockWeatherInfoMissingApiKeyText,
         kClockWeatherTempPlaceholder,
         kClockWeatherHumidityPlaceholder,
-        kClockWeatherUnknownIconCode);
+        kClockWeatherUnknownIconCode) || details_changed;
 }
