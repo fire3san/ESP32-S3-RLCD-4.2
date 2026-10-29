@@ -249,7 +249,7 @@ void apply_clock_mode_visibility(bool setup_active, bool low_battery_mode)
     const ClockHeaderObjectRefs &header = clock_header_object_refs();
     const ClockSurfaceObjectRefs &surface = clock_surface_object_refs();
     const bool low = low_battery_mode;
-    set_obj_visible(surface.second_canvas, !low && !setup_active);
+    set_obj_visible(surface.second_canvas, !low);
     set_work_page_day_progress_visible(kWorkPageWeatherClock, !low);
     set_obj_visible(surface.second_progress_canvas, !low && !setup_active);
     set_obj_visible(surface.low_battery_icon_canvas, low);

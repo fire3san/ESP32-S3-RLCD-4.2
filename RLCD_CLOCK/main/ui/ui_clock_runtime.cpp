@@ -151,6 +151,11 @@ bool update_setup_clock_header_time_ui(const struct tm &local)
 {
     ClockUiTimeSnapshot time_snapshot = clock_ui_time_snapshot(local);
     bool changed = update_clock_minute_canvas(time_snapshot, local);
+    if (local.tm_sec != s_last_ui_second) {
+        draw_second_canvas(local);
+        s_last_ui_second = local.tm_sec;
+        changed = true;
+    }
     changed |= update_clock_date_label(time_snapshot,
                                        local,
                                        kWorkPageWeatherClock);
