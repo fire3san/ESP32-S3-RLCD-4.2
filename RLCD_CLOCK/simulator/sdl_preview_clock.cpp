@@ -69,7 +69,7 @@ void SdlPreviewClock::draw_time(const struct tm &local)
     lv_canvas_fill_bg(time_canvas_, lv_color_white(), LV_OPA_COVER);
     char hm[6];
     snprintf(hm, sizeof(hm), "%02d:%02d", local.tm_hour, local.tm_min);
-    draw_dseg_scaled_text(time_canvas_, kDSEG84Font, hm, 0, 150, 7, 4);
+    draw_dseg_scaled_text(time_canvas_, kDSEG84Font, hm, 0, 118, 7, 6);
     lv_obj_invalidate(time_canvas_);
 }
 
@@ -79,7 +79,7 @@ void SdlPreviewClock::draw_second(const struct tm &local)
     lv_canvas_fill_bg(second_canvas_, lv_color_white(), LV_OPA_COVER);
     char ss[3];
     snprintf(ss, sizeof(ss), "%02d", local.tm_sec);
-    draw_dseg_scaled_text(second_canvas_, kDSEG36Font, ss, 0, 28, 3, 4);
+    draw_dseg_scaled_text(second_canvas_, kDSEG36Font, ss, 0, 32, 3, 4);
     lv_obj_invalidate(second_canvas_);
 }
 

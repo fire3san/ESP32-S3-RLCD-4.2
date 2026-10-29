@@ -5,12 +5,12 @@
 
 namespace ui_clock_layout {
 
-inline constexpr int kClockTimeCanvasX = 4;
-inline constexpr int kClockTimeCanvasY = 44;
-inline constexpr int kClockTimeCanvasWidth = 348;
-inline constexpr int kClockTimeCanvasHeight = 160;
-inline constexpr int kClockSecondCanvasX = 354;
-inline constexpr int kClockSecondCanvasY = 166;
+inline constexpr int kClockTimeCanvasX = 6;
+inline constexpr int kClockTimeCanvasY = 54;
+inline constexpr int kClockTimeCanvasWidth = 340;
+inline constexpr int kClockTimeCanvasHeight = 126;
+inline constexpr int kClockSecondCanvasX = 350;
+inline constexpr int kClockSecondCanvasY = 140;
 inline constexpr int kClockSecondCanvasWidth = 44;
 inline constexpr int kClockSecondCanvasHeight = 36;
 inline constexpr int kClockStatusGifCanvasX = 279;
