@@ -1,6 +1,6 @@
 # ESP32-S3 RLCD 4.2 天氣時鐘
 
-简体中文 [切換](README.md) · 繁體中文（目前） · [English](README_EN.md) · [日本語](README_JA.md)
+> **語言：** 繁體中文（目前；[預設首頁](README.md)） · [简体中文](README_zh_CN.md) · [English](README_EN.md) · [日本語](README_JA.md)
 
 以微雪 ESP32-S3 和 4.2 吋 RLCD 為基礎的桌面時鐘，整合常駐顯示、天氣、本機溫溼度、圖片、月曆、提醒與小智 AI。重點是按需連網與低功耗，不是讓所有功能持續運作。
 
