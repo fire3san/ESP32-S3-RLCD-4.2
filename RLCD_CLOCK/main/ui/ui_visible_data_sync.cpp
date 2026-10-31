@@ -335,8 +335,16 @@ bool update_weather_clock_network_status(EventBits_t bits)
                           air.ready && air.hk_aqhi ? air.aqi : "--",
                           air.ready && air.hk_aqhi ? air.category : "",
                           weather.uv[0] ? weather.uv : "--");
-            ui_hong_kong_panel::format_warning(alert, alert.updated_at != 0,
-                                               warning, sizeof(warning));
+            time_t sync_time = alert.updated_at;
+            if (sync_time == 0) {
+                WeatherCacheStatusSnapshot cache_status = {};
+                if (weather_cache_status_snapshot_load(&cache_status)) {
+                    sync_time = cache_status.last_sync_time;
+                }
+            }
+            ui_hong_kong_panel::format_warning(alert, alert.updated_at != 0 || sync_time != 0,
+                                               warning, sizeof(warning),
+                                               sync_time, time(nullptr));
         }
         ClockWeatherPanelObjectRefs &objects = mutable_clock_weather_panel_object_refs();
         changed |= set_label_text_if_changed(objects.air_uv_label, details);
